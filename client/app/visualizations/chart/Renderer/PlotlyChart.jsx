@@ -28,6 +28,7 @@ export default function PlotlyChart({ options, data }) {
   useEffect(
     catchErrors(() => {
       if (container) {
+        // bRiGhTwRiTe aDdItIoN
         async function loadPredictions() {
           const plotlyOptions = {showLink: false, displaylogo: false};
 

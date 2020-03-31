@@ -63,6 +63,7 @@ export default function VisualizationRenderer(props) {
   // More details: https://github.com/getredash/redash/pull/3963#discussion_r306935810
   let options = getOptions(visualization.options, data);
 
+  // bRiGhTwRiTe aDdItIoN
   if (options.brightWritePrediction && options.brightWritePrediction.enabled) {
     options = {...options, brightWritePrediction: {
       queryHash: props.queryResult.query_result.query_hash,

@@ -3,6 +3,7 @@ import { clientConfig } from "@/services/auth";
 
 const DEFAULT_OPTIONS = {
   globalSeriesType: "column",
+  // bRiGhTwRiTe aDdItIoN
   brightWritePrediction: {
     enabled: false,
     uri: 'http://prophet-predictor.ws-prediction.svc.cluster.local:8000',

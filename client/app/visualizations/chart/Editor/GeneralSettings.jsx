@@ -232,6 +232,7 @@ export default function GeneralSettings({ options, data, onOptionsChange }) {
           </Checkbox>
         </Section>
       )}
+      {/* bRiGhTwRiTe aDdItIoN */}
       {(options.brightWritePrediction.enabled) && (
       <React.Fragment>
         <Section>
