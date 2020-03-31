@@ -24,12 +24,14 @@ export default function PlotlyChart({ options, data }) {
   const [container, setContainer] = useState(null);
   const errorHandler = useContext(ErrorBoundaryContext);
   const isMobile = useMedia({ maxWidth: 768 });
+  let cancels = [];
 
   useEffect(
     catchErrors(() => {
       if (container) {
         // bRiGhTwRiTe aDdItIoN
         async function loadPredictions() {
+          const CancelToken = axiosLib.CancelToken;
           const plotlyOptions = {showLink: false, displaylogo: false};
 
           const chartData = getChartData(data.rows, options);
@@ -46,7 +48,11 @@ export default function PlotlyChart({ options, data }) {
                 values: data['y'],
                 config: options.brightWritePrediction.prophetConfig,
                 query_hash: options.brightWritePrediction.queryHash
-              })
+              }, {
+                cancelToken: new CancelToken(function executor(c) {
+                  cancels.push(c);
+                })
+              });
             });
             const traceNames = plotlyData.map(x => x['name']);
             let results = await Promise.all(promises);
@@ -130,9 +136,12 @@ export default function PlotlyChart({ options, data }) {
   // Cleanup when component destroyed
   useEffect(() => {
     if (container) {
-      return () => Plotly.purge(container);
+      return () => {
+        cancels.forEach(c => c());
+        Plotly.purge(container);
+      }
     }
-  }, [container]);
+  }, [container, cancels]);
 
   return <div className="chart-visualization-container" ref={setContainer} />;
 }
