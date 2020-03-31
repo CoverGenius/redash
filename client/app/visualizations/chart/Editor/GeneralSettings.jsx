@@ -239,8 +239,8 @@ export default function GeneralSettings({ options, data, onOptionsChange }) {
           <div className="m-b-15">
             <label>Service URI</label>
             <Input
-              data-test="VisualizationName"
-              id="visualization-name"
+              data-test="PredictionServiceURI"
+              id="prediction-service-uri"
               className="w-100"
               value={options.brightWritePrediction.uri}
               onChange={event => onOptionsChange({ brightWritePrediction: { uri: event.target.value } })}
