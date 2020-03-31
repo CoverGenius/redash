@@ -1,5 +1,5 @@
-import {each, isArray, isObject} from "lodash";
-import React, { useState, useEffect, useContext } from "react";
+import { isArray, isObject, isEqual } from "lodash";
+import React, { useState, useEffect, useContext, memo } from "react";
 import useMedia from "use-media";
 import { ErrorBoundaryContext } from "@/components/ErrorBoundary";
 import { RendererPropTypes } from "@/visualizations/prop-types";
@@ -20,7 +20,8 @@ function catchErrors(func, errorHandler) {
   };
 }
 
-export default function PlotlyChart({ options, data }) {
+const PlotlyChart = function({ options, data }) {
+
   const [container, setContainer] = useState(null);
   const errorHandler = useContext(ErrorBoundaryContext);
   const isMobile = useMedia({ maxWidth: 768 });
@@ -147,3 +148,9 @@ export default function PlotlyChart({ options, data }) {
 }
 
 PlotlyChart.propTypes = RendererPropTypes;
+
+
+export default memo(PlotlyChart, (prevProps, nextProps) => {
+  return isEqual(prevProps.options, nextProps.options) &&
+   isEqual(prevProps.data, nextProps.data);
+});
