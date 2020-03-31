@@ -3,6 +3,17 @@ import { clientConfig } from "@/services/auth";
 
 const DEFAULT_OPTIONS = {
   globalSeriesType: "column",
+  brightWritePrediction: {
+    enabled: false,
+    uri: 'http://prophet-predictor.ws-prediction.svc.cluster.local:8000',
+    algorithm: 'prophet',
+    prophetConfig: {
+      seasonality_prior_scale: 10.0,
+      changepoint_prior_scale: 0.05,
+      interval_width: 0.80,
+      seasonality_mode: 'additive'
+    }
+  },
   sortX: true,
   legend: { enabled: true },
   yAxis: [{ type: "linear" }, { type: "linear", opposite: true }],

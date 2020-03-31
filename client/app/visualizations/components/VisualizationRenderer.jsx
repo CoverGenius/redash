@@ -62,6 +62,14 @@ export default function VisualizationRenderer(props) {
   // and use saved reference if nothing changed
   // More details: https://github.com/getredash/redash/pull/3963#discussion_r306935810
   let options = getOptions(visualization.options, data);
+
+  if (options.brightWritePrediction && options.brightWritePrediction.enabled) {
+    options = {...options, brightWritePrediction: {
+      queryHash: props.queryResult.query_result.query_hash,
+      ...options.brightWritePrediction
+    }}
+  }
+
   if (isEqual(lastOptions.current, options)) {
     options = lastOptions.current;
   }
