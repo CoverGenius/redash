@@ -1,4 +1,4 @@
-import {isArray, map, mapValues, includes, some, each, difference, toNumber, isObject} from "lodash";
+import {isArray, map, mapValues, includes, some, each, difference, toNumber} from "lodash";
 import Input from "antd/lib/input";
 import React, { useMemo } from "react";
 import * as Grid from "antd/lib/grid";
