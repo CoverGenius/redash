@@ -6,7 +6,7 @@ const DEFAULT_OPTIONS = {
   // bRiGhTwRiTe aDdItIoN
   brightWritePrediction: {
     enabled: false,
-    uri: 'http://prophet-predictor.ws-prediction.svc.cluster.local:8000',
+    uri: 'https://ws-forecast.brightwrite.com',
     algorithm: 'prophet',
     prophetConfig: {
       seasonality_prior_scale: 10.0,
